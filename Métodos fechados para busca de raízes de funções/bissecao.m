@@ -3,13 +3,13 @@ function bissecao()
 
   max_iter = 100;
   tolerancia = 1e-5;
-  intervalo = [1,1.5]; ## [Xi, Xu] -> [inicio, final]
+  intervalo = [-1,2]; ## [Xi, Xu] -> [inicio, final]
 
-  metodo(max_iter,tolerancia,intervalo)
+  metodo(max_iter,tolerancia,intervalo);
 endfunction
 
 function y = f(x)
-  y = x^3 - 2 * x^2 + x - 0,275;
+  y =x^2-x;
 endfunction
 
 function metodo(max_iter, tolerancia, intervalo)
@@ -20,20 +20,22 @@ function metodo(max_iter, tolerancia, intervalo)
   x = inf;
 
   for iter = 1 : max_iter
-    if erro <= tolerancia
-      break
-    endif
-    x = (intervalo(1) + intervalo(2))/2;
+   x = (intervalo(1) + intervalo(2)) / 2
+   erro = abs(x - x_antigo);
 
-    if f(x) * f(intervalo(1)) > 0
-      erro = abs(intervalo(2) - x);
-      intervalo(2) = x;
-    elseif f(x) * f(intervalo(1)) < 0
-       erro = abs(intervalo(1) - x);
-       intervalo(1) = x;
-    else
-       break
-    endif
+   if erro <= tolerancia
+     break
+   endif
+
+
+   x_antigo = x;
+
+   if f(x)*f(intervalo(1)) < 0
+    intervalo(1) =  x;
+   else
+    intervalo(2) = x;
+   endif
 
   endfor
+
 endfunction
