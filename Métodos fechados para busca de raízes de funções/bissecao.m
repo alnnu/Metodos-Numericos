@@ -1,15 +1,16 @@
 function bissecao()
+  clc
   ## o metodo faz multiplas divisoes em um intervalo
 
-  max_iter = 100;
-  tolerancia = 1e-5;
-  intervalo = [-1,2]; ## [Xi, Xu] -> [inicio, final]
+  max_iter = 1000;
+  tolerancia = 1e-15;
+  intervalo = [0,1]; ## [Xi, Xu] -> [inicio, final]
 
   metodo(max_iter,tolerancia,intervalo);
 endfunction
 
 function y = f(x)
-  y =x^2-x;
+  y = x^3 + 2*x^2 - 2;
 endfunction
 
 function metodo(max_iter, tolerancia, intervalo)
@@ -23,6 +24,7 @@ function metodo(max_iter, tolerancia, intervalo)
    x = (intervalo(1) + intervalo(2)) / 2
    erro = abs(x - x_antigo);
 
+
    if erro <= tolerancia
      break
    endif
@@ -30,7 +32,8 @@ function metodo(max_iter, tolerancia, intervalo)
 
    x_antigo = x;
 
-   if f(x)*f(intervalo(1)) < 0
+
+   if f(x)*f(intervalo(1)) > 0
     intervalo(1) =  x;
    else
     intervalo(2) = x;
