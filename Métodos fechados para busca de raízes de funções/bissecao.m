@@ -12,20 +12,39 @@ function bissecao()
 endfunction
 
 function grafico2D(xs)
+  ## vetores base para a curva
   x = [0:0.1:4];
   y = zeros(1,length(x));
 
   for i=1:length(y)
+    ## calcula o f(x)
     y(i) = f(x(i));
   endfor
 
+  ## grafico animado
   for i=1:length(xs)
+    ## plota a curva
     plot(x,y,'linewidth',2);
+
+    ##"segura para poder plotar o resto de infomação
     hold "on";
+
+    ##plota as iterações
     plot(xs(i),f(xs(i)),"o", 'linewidth',2);
+
+    ##cria um grid
     grid "on";
+
+    ##aumenta a fonte
     set(gca,'fontsize',20);
+
+    ##cria um titulo
+    title(sprintf('Iteracao: %i; f(%.6f) = %.6f', i, xs(i), f(xs(i))));
+
+
     hold "off";
+
+    ##cria um pause na animação
     pause(0.1);
   endfor
 endfunction
@@ -76,6 +95,7 @@ function [x, xs, iter]  = metodo(max_iter, tolerancia, intervalo)
    endif
   endfor
 
+  ## timinui o vetor para o tamanho necessario
   xs = xs(1:iter);
 
 endfunction
