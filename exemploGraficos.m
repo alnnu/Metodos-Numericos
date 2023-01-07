@@ -19,7 +19,6 @@ endfunction
 
 function grafico2DAnimado(x,y, pontoX, pontoY)
   figure(1)
-
   for i=1 : length(pontoX)
      plot(x,y,'linewidth',2);
      hold "on";
