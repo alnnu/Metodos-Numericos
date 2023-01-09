@@ -3,7 +3,7 @@ function bissecao()
   ## o metodo faz multiplas divisoes em um intervalo
   max_iter = 1000;
   tolerancia = 1e-5;
-  intervalo = [0,1]; ## [Xi, Xu] -> [inicio, final]
+  intervalo = [-2,-1]; ## [Xi, Xu] -> [inicio, final]
 
   [x,xs,iter] = metodo(max_iter,tolerancia,intervalo);
 
@@ -13,7 +13,7 @@ endfunction
 
 function grafico2D(xs)
   ## vetores base para a curva
-  x = [0:0.1:4];
+  x = [-2:0.1:4];
   y = zeros(1,length(x));
 
   for i=1:length(y)
@@ -51,7 +51,7 @@ endfunction
 
 function y = f(x)
   ##function ussada para o metodo
-  y = x^3 + 2*x^2 - 2;
+  y = sin(x) * cos(x);
 endfunction
 
 function [x, xs, iter]  = metodo(max_iter, tolerancia, intervalo)
