@@ -3,11 +3,39 @@ function bissecao()
   ## o metodo faz multiplas divisoes em um intervalo
   max_iter = 1000;
   tolerancia = 1e-5;
-  intervalo = [-2,-1]; ## [Xi, Xu] -> [inicio, final]
+  intervalo = [0,1]; ## [Xi, Xu] -> [inicio, final]
 
   [x,xs,iter] = metodo(max_iter,tolerancia,intervalo);
 
   grafico2D(xs);
+  graficoConv(xs)
+
+endfunction
+
+function graficoConv(xs)
+  iters = [1:1:length(xs)];
+
+  ys = zeros(1,length(xs));
+
+  for i=1:length(xs)
+    ys(i) = f(xs(i))
+  endfor
+
+
+  figure(2);
+
+  subplot(2,1,1);
+  plot(iters,xs,'linewidth', 2);
+  grid 'on';
+  set(gca,'fontsize',20, 'xlim',[1,length(iters)]);
+  title("Grafico de x")
+
+  subplot(2,1,2)
+  plot(iters,ys,'linewidth',2);
+  grid 'on';
+  set(gca, 'fontsize',20,'xlim',[1,length(iters)]);
+  title("grafico de f(x)")
+
 
 endfunction
 
@@ -51,7 +79,7 @@ endfunction
 
 function y = f(x)
   ##function ussada para o metodo
-  y = sin(x) * cos(x);
+  y = x^3 + 2*x^2 -2;
 endfunction
 
 function [x, xs, iter]  = metodo(max_iter, tolerancia, intervalo)
