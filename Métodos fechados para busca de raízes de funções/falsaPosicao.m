@@ -8,9 +8,35 @@ function falsaPosicao()
   [xs] = metodo(intervalo, tolerancia, max_iter);
 
   grafico(xs);
+  graficoConv(xs);
 
 endfunction
 
+function graficoConv(xs)
+  iters = [1:1:length(xs)];
+
+  ys = zeros(1,length(iters));
+
+  for i=1:length(iters)
+    ys(i) = f(xs(i));
+  endfor
+
+
+  figure(2);
+
+  subplot(2,1,1);
+  plot(iters,xs,'linewidth',2);
+  grid 'on'
+  set(gca,'fontsize',20, 'YLim',[-1,1])
+  title("Grafico de X");
+
+  subplot(2,1,2)
+  plot(iters,ys,'linewidth',2);
+  grid 'on';
+  set(gca,'fontsize',20,'YLim',[-1,1]);
+  title('Grafico de F(x)');
+
+endfunction
 function grafico(xs)
   x = [-2:0.1:2];
   y = zeros(1,length(x));
@@ -18,6 +44,7 @@ function grafico(xs)
     y(i) = f(x(i));
   endfor
 
+  figure(1)
 
   for i=1:length(xs)
   plot(x,y,'linewidth',2);
@@ -73,6 +100,4 @@ function [xs] = metodo(intervalo, tolerancia, max_iter)
   endfor
 
   xs = xs(1:iter);
-
-
 endfunction
