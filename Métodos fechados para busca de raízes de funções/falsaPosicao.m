@@ -27,7 +27,7 @@ function graficoConv(xs)
   subplot(2,1,1);
   plot(iters,xs,'linewidth',2);
   grid 'on'
-  set(gca,'fontsize',20, 'YLim',[-1,1])
+  set(gca,'fontsize',20,)
   title("Grafico de X");
 
   subplot(2,1,2)
